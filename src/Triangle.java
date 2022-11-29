@@ -4,30 +4,32 @@ public class Triangle {
 
     }
 
-    public double getAreaOfRightTriangleUseCateLeg(double catetA, double catetB) {
-        return 1 / 2 * (catetA * catetB);
+    public double getAreaUseTwoSideAndAngle(double sideA, double sideB, double angle) {
+        return 0.5 * sideA * sideB * Math.sin(angle);
     }
 
-    public double getAreaOfRightTriangleUseHypotenuseAndH(double hypo, double h) {
-        return 1 / 2 * (hypo * h);
+    public double getAreaUseBaseSideAndHight(double base, double hight) {
+        return 0.5 * base * hight;
     }
 
-    public double getAreaOfRightTriangleHypotenuseAndAcuteAngle(double hypo, double actureAngle) {
-        return hypo * 2 * Math.sin(2 * actureAngle) / 4;
-
+    public double getAreaUseRadiusAndAllSides(double radius, double sideA, double sideB, double sideC) {
+        return (sideA * sideB * sideC) / (4 * radius);
     }
 
-    public double getAreaOfRightTriangleUseCatetAndAngle(double catet, double angle) {
-        return 1 / 2 * square(catet) * Math.tan(angle);
+    public double getAreaUseOneSideAndTwoAngle(double sideA, double angleA, double angleB) {
 
+        return square(sideA) * (Math.sin(angleA) * Math.sin(angleB) / 2 * Math.sin(angleA + angleB));
     }
 
-    public double getAreaUseRadiusandHypotenuse(double catetA, double catetB, double hypo) {
-        double radius = (catetA + catetB - hypo) / 2;
-        return radius*(radius+hypo);
+    public double getAreaUseSemiPerimeterAndRadius(double sPerim, double radius) {
+        return radius * sPerim;
+    }
+    public double getAreaUseAllSides(double sideA, double sideB, double sideC){
+        double p = (sideA + sideB + sideC) / 2;
+        return Math.sqrt(p *(p -sideA) * (p -sideB) * (p - sideC));
     }
 
-    public double square(double a) {
+    private double square(double a) {
         return a * a;
     }
 }

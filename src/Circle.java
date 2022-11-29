@@ -1,8 +1,9 @@
 public class Circle {
 
-    Circle(){
+   public Circle() {
 
     }
+
     private final double pi = 3.14;
 
     public double getArea(double radius) {
