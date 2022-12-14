@@ -1,30 +1,20 @@
 public class Rectangle {
+    RectangleConfig rectangleConfig;
 
-   public Rectangle() {
 
+
+   public Rectangle(RectangleConfig rectangleConfig) {
+this.rectangleConfig = rectangleConfig;
     }
 
-    private final double pi = 3.14;
 
+    public double getAreaUseLengthAndWidth() {
 
-    public double getAreaUseLengthAndWidth(double lenght, double width) {
-
-        return lenght * width;
+        return rectangleConfig.getLength() * rectangleConfig.getWidth();
     }
 
-    public double getAreaUseDiagonalAndCorner(double diagonal, double corner) {
-        return 0.5 * square(diagonal) * Math.sin(corner);
+    public double getPerimeter() {
+        return 2 * (rectangleConfig.getLength() + rectangleConfig.getWidth());
     }
 
-    public double getAreaUseDiagonalAndAnySide(double diagonal, double side) {
-        return side * (Math.sqrt(square(diagonal) - square(side)));
-    }
-
-    public double getPerimeter(double sideA, double sideB) {
-        return 2 * (sideA + sideB);
-    }
-
-    public double square(double a) {
-        return a * a;
-    }
 }

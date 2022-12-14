@@ -7,135 +7,112 @@ public class GeosandboxLogic {
 
     public void request() {
         Scanner src = new Scanner(System.in);
-        System.out.println("pls write what u want: Triangle Rectangle Circle or 0 for exit");
-        String figure = src.nextLine();
-        switch (figure.toLowerCase()) {
-            case ("triangle"):
-                getDataFromUserForTriangle();
-                break;
-            case ("rectangle"):
+        String figure = firstChose().toLowerCase();
+        while (!"exit".equals(figure)) {
+            switch (Integer.parseInt(figure)) {
+                case (1): // triangle
+                    TriangleConfig triangleConfig = getDataFromUserForTriangle();
+                    Triangle tr = new Triangle(triangleConfig);
+                    printArea(tr.getAreaUseAllSides());
+                    printPerimeter(tr.getPerimeterAllSides());
+                    figure = firstChose();
 
-            case ("circle"):
+                    break;
+                case (2): //Rectangle
+                    RectangleConfig rectangleConfig = getDataFomUserForRectangle();
+                    Rectangle re = new Rectangle(rectangleConfig);
+                    printArea(re.getAreaUseLengthAndWidth());
+                    printPerimeter(re.getPerimeter());
+                    printName(rectangleConfig.getName());
+                    figure = firstChose();
 
-            default:
+                    break;
+                case (3): //Circle
+                    CircleConfig circleConfig = getDataFromUserForCircle();
+                    Circle cr = new Circle(circleConfig);
+                    printArea(cr.getArea());
+                    printPerimeter(cr.getPerimeter());
+                    figure = firstChose();
+                    break;
+                default:
+                    System.out.println("pls write correct");
+                    figure = firstChose();
+                    break;
+            }//switch
         }
+    }
+private String firstChose (){
+    System.out.println("pls write what u want: Triangle(1) Rectangle(2) Circle(3)");
+    System.out.println("or 'List' for show all create figure or 'Exit' for exit");
+    Scanner src = new Scanner(System.in);
+    String figure = src.nextLine();
+   return figure;
+}
+    private RectangleConfig getDataFomUserForRectangle() {
+        Scanner src = new Scanner(System.in);
+        double lenght = 0;
+        double width = 0;
+        String name = "";
+        System.out.println("pls write name of figure");
+        if(src.hasNextLine()){name = src.nextLine();
+        }else {name = "rectangle";}
+
+        System.out.println("pls write  lenght ");
+        if (src.hasNextInt()) lenght = src.nextInt();
+        else if (src.hasNextDouble()) lenght = src.nextDouble();
+        System.out.println("pls write  width ");
+        if (src.hasNextInt()) width = src.nextInt();
+        else if (src.hasNextDouble()) width = src.nextDouble();
+        RectangleConfig rectangleConfig = new RectangleConfig(name,lenght, width);
+        return rectangleConfig;
 
     }
 
-    private void getDataFromUserForTriangle() {
+    private CircleConfig getDataFromUserForCircle() {
         Scanner src = new Scanner(System.in);
-        Triangle triangle = new Triangle();
-        String tempScaner = "";
+        double radius = 0;
+        String name = "";
+        System.out.println("pls write name of figure");
+        name = src.nextLine();
+        System.out.println("pls write  radius ");
+        if (src.hasNextInt()) radius = src.nextInt();
+        else if (src.hasNextDouble()) radius = src.nextDouble();
+        CircleConfig config = new CircleConfig(name, radius);
+        return config;
+
+    }
+
+    private TriangleConfig getDataFromUserForTriangle() {
+        Scanner src = new Scanner(System.in);
         double sideA = 0;
         double sideB = 0;
         double sideC = 0;
-        double height = 0;
-        double base = 0;
-        double radius = 0;
-        double angle = 0;
-        double angleB = 0;
-        double perimetr = 0;
-        System.out.println("pls put data what u know");
-
-        System.out.println("Do u know base and height? yes or not (Default NO)");
-        if (src.nextLine().equals("Yes")) {
-            System.out.println("pls write height:");
-            if (src.hasNextInt()) height = src.nextInt();
-            else if (src.hasNextDouble()) height = src.nextDouble();
-            System.out.println("now write Base side:");
-            if (src.hasNextInt()) base = src.nextInt();
-            else if (src.hasNextDouble()) base = src.nextDouble();
-            perimetr = triangle.getAreaUseBaseSideAndHight(base, height);
-            System.out.println("Perimeter Triangle: " + perimetr);
-        } else {
-            System.out.println("Do u know all sides? yes or not (Default NO)");
-            if (src.nextLine().equals("Yes")) {
-                System.out.println("pls write  sideA ");
-                if (src.hasNextInt()) sideA = src.nextInt();
-                else if (src.hasNextDouble()) sideA = src.nextDouble();
-                System.out.println("pls write  SideB ");
-                if (src.hasNextInt()) sideB = src.nextInt();
-                else if (src.hasNextDouble()) sideB = src.nextDouble();
-                System.out.println("pls write  SideC ");
-                if (src.hasNextInt()) sideC = src.nextInt();
-                else if (src.hasNextDouble()) sideC = src.nextDouble();
-
-                perimetr = triangle.getAreaUseAllSides(sideA, sideB, sideC);
-                System.out.println("Perimeter Triangle: " + perimetr);
-            } else {
-                System.out.println("Do u know two sides and the angle between them? yes or not (Default NO)");
-                if (src.nextLine().equals("Yes")) {
-                    System.out.println("pls write first sideA ");
-                    if (src.hasNextInt()) sideA = src.nextInt();
-                    else if (src.hasNextDouble()) sideA = src.nextDouble();
-
-                    System.out.println("pls write second SideB ");
-                    if (src.hasNextInt()) sideB = src.nextInt();
-                    else if (src.hasNextDouble()) sideB = src.nextDouble();
-
-                    System.out.println("pls write angle ");
-                    if (src.hasNextInt()) angle = src.nextInt();
-                    else if (src.hasNextDouble()) angle = src.nextDouble();
-                    perimetr = triangle.getAreaUseTwoSideAndAngle(sideA, sideB, angle);
-                    System.out.println("Perimeter Triangle: " + perimetr);
-                } else {
-                    System.out.println("Do u know one side and two angle? yes or not (Default NO)");
-                    if (src.nextLine().toLowerCase().equals("yes")) {
-                        System.out.println("pls write first sideA ");
-                        if (src.hasNextInt()) sideA = src.nextInt();
-                        else if (src.hasNextDouble()) sideA = src.nextDouble();
-                        System.out.println("pls write angle A ");
-                        if (src.hasNextInt()) angle = src.nextInt();
-                        else if (src.hasNextDouble()) angle = src.nextDouble();
-                        System.out.println("pls write angle B ");
-                        if (src.hasNextInt()) angleB = src.nextInt();
-                        else if (src.hasNextDouble()) angleB = src.nextDouble();
-                        perimetr = triangle.getAreaUseOneSideAndTwoAngle(sideA, angle, angleB);
-                        System.out.println("Perimeter Triangle: " + perimetr);
-                    } else {
-                        System.out.println("Do u know Semi-Perimeter and Radius? yes or not (Default NO)");
-                        if (src.nextLine().equals("Yes")) {
-                            System.out.println("pls write  Semi-Perimeter ");
-                            if (src.hasNextInt()) sideA = src.nextInt();
-                            else if (src.hasNextDouble()) sideA = src.nextDouble();
-
-                            System.out.println("pls write  radius ");
-                            if (src.hasNextInt()) perimetr = src.nextInt();
-                            else if (src.hasNextDouble()) perimetr = src.nextDouble();
-                            perimetr = triangle.getAreaUseSemiPerimeterAndRadius(perimetr, radius);
-                            System.out.println("Perimeter Triangle: " + perimetr);
-                        } else {
-                            System.out.println("Do u know circumscribed circle and all sides? yes or not (Default NO)");
-                            if (src.nextLine().equals("Yes")) {
-                                System.out.println("pls write  sideA ");
-                                if (src.hasNextInt()) sideA = src.nextInt();
-                                else if (src.hasNextDouble()) sideA = src.nextDouble();
-
-                                System.out.println("pls write  SideB ");
-                                if (src.hasNextInt()) sideB = src.nextInt();
-                                else if (src.hasNextDouble()) sideB = src.nextDouble();
-
-                                System.out.println("pls write  SideC ");
-                                if (src.hasNextInt()) sideC = src.nextInt();
-                                else if (src.hasNextDouble()) sideC = src.nextDouble();
-
-                                System.out.println("pls write  Radius ");
-                                if (src.hasNextInt()) radius = src.nextInt();
-                                else if (src.hasNextDouble()) radius = src.nextDouble();
-                                perimetr = triangle.getAreaUseRadiusAndAllSides(radius, sideA, sideB, sideC);
-                                System.out.println("Perimeter Triangle: " + perimetr);
-
-                            }else {
-                                System.out.println("you don't know anything, we can't help you");
-                            }
-                        }
-
-                    }
-                }
-
-            }
+        String name = "";
+        System.out.println("pls write name of figure");
+        name = src.nextLine();
+        System.out.println("pls write  sideA ");
+        if (src.hasNextInt()) sideA = src.nextInt();
+        else if (src.hasNextDouble()) sideA = src.nextDouble();
+        System.out.println("pls write  SideB ");
+        if (src.hasNextInt()) sideB = src.nextInt();
+        else if (src.hasNextDouble()) sideB = src.nextDouble();
+        System.out.println("pls write  SideC ");
+        if (src.hasNextInt()) sideC = src.nextInt();
+        else if (src.hasNextDouble()) sideC = src.nextDouble();
+        TriangleConfig triangle = new TriangleConfig(name,sideA, sideB, sideC);
+        return triangle;
+    }
 
 
-        }
+    private void printArea(double area) {
+        System.out.println("Area : " + area);
+
+    }
+
+    private void printPerimeter(double perm) {
+        System.out.println("Perm: " + perm);
+    }
+    private  void  printName(String name){
+        System.out.println("Name figure: " + name);
     }
 }
