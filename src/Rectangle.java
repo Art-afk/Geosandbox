@@ -1,20 +1,36 @@
 public class Rectangle {
-    RectangleConfig rectangleConfig;
+
+    private final String name;
+
+    private final double length;
+    private final double width;
 
 
+   public Rectangle(String name, double length, double width) {
 
-   public Rectangle(RectangleConfig rectangleConfig) {
-this.rectangleConfig = rectangleConfig;
+       this.length = length;
+       this.width = width;
+       this.name = name;
+    }
+    public double getLength() {
+        return length;
     }
 
+    public double getWidth() {
+        return width;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public double getAreaUseLengthAndWidth() {
 
-        return rectangleConfig.getLength() * rectangleConfig.getWidth();
+        return getLength() * getWidth();
     }
 
     public double getPerimeter() {
-        return 2 * (rectangleConfig.getLength() + rectangleConfig.getWidth());
+        return 2 * (getLength() + getWidth());
     }
 
 }

@@ -1,17 +1,25 @@
 public class Circle {
-    private CircleConfig circleConfig;
+    private final double radius;
+    private final String name;
+   public Circle(String name, double radius) {
+       this.name = name;
+       this.radius = radius;
+    }
+    public double getRadius() {
+        return radius;
+    }
 
-   public Circle(CircleConfig circleConfig) {
-       this.circleConfig= circleConfig;
+    public String getName() {
+        return name;
     }
     private final double pi = 3.14;
 
     public double getArea() {
-        return pi * square(circleConfig.getRadius());
+        return pi * square(getRadius());
     }
 
     public double getPerimeter() {
-        return 2 * pi * circleConfig.getRadius();
+        return 2 * pi * getRadius();
     }
 
 
