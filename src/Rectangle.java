@@ -1,26 +1,36 @@
 public class Rectangle {
 
-    Rectangle() {
+    private final String name;
 
+    private final double length;
+    private final double width;
+
+
+   public Rectangle(String name, double length, double width) {
+
+       this.length = length;
+       this.width = width;
+       this.name = name;
     }
-    private final double pi = 3.14;
-
-
-    public double getAreaUseLengthAndWidth(double lenght, double width){
-        return lenght* width;
-   }
-   public double getAreaUseDiagonalAndCorner(double diagonal, double corner){
-        return 0.5 * square(diagonal) * Math.sin(corner);
-   }
-
-   public double getAreaUseDiagonalAndAnySide(double diagonal, double side){
-        return side*(Math.sqrt(square(diagonal) - square(side)));
-   }
-   public  double getPerimeter(double sideA, double sideB){
-        return 2*(sideA+sideB);
-   }
-
-    public double square(double a) {
-        return a * a;
+    public double getLength() {
+        return length;
     }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getAreaUseLengthAndWidth() {
+
+        return getLength() * getWidth();
+    }
+
+    public double getPerimeter() {
+        return 2 * (getLength() + getWidth());
+    }
+
 }

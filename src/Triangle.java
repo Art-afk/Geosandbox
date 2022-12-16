@@ -1,33 +1,40 @@
 public class Triangle {
 
-    Triangle() {
+    private final String name;
+    private final double sideA;
+    private final double sideB;
+    private final double sideC;
 
+    Triangle(String name, double sideA, double sideB, double sideC ) {
+
+        this.sideA = sideA;
+        this.sideB = sideB;
+        this.sideC = sideC;
+        this.name = name;
     }
 
-    public double getAreaOfRightTriangleUseCateLeg(double catetA, double catetB) {
-        return 1 / 2 * (catetA * catetB);
+    public double getSideA(){
+        return sideA;
     }
 
-    public double getAreaOfRightTriangleUseHypotenuseAndH(double hypo, double h) {
-        return 1 / 2 * (hypo * h);
+    public double getSideB() {
+        return sideB;
     }
 
-    public double getAreaOfRightTriangleHypotenuseAndAcuteAngle(double hypo, double actureAngle) {
-        return hypo * 2 * Math.sin(2 * actureAngle) / 4;
+    public double getSideC() {return sideC; }
 
+    public String getName() {
+        return name;
+    }
+    public double getAreaUseAllSides() {
+        double p = getPerimeterAllSides() / 2;
+        return Math.sqrt(p * (p - getSideA()) * (p - getSideB()) * (p - getSideC()));
     }
 
-    public double getAreaOfRightTriangleUseCatetAndAngle(double catet, double angle) {
-        return 1 / 2 * square(catet) * Math.tan(angle);
+    public double getPerimeterAllSides() {
 
+        return getSideA() + getSideB() + getSideC();
     }
 
-    public double getAreaUseRadiusandHypotenuse(double catetA, double catetB, double hypo) {
-        double radius = (catetA + catetB - hypo) / 2;
-        return radius*(radius+hypo);
-    }
 
-    public double square(double a) {
-        return a * a;
-    }
 }
