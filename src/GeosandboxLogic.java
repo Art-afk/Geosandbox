@@ -6,44 +6,60 @@ public class GeosandboxLogic {
     }
 
     public void request() {
-        Scanner src = new Scanner(System.in);
-        String figure = firstChose().toLowerCase();
-        while (!"exit".equals(figure)) {
-            switch (Integer.parseInt(figure)) {
-                case (1): // triangle
-                    Triangle triangle = getDataFromUserForTriangle();
-                    printArea(triangle.getAreaUseAllSides());
-                    printPerimeter(triangle.getPerimeterAllSides());
-                    figure = firstChose();
+        String keyinput = firstChose().toLowerCase();
+         ShapeType shapeType = ShapeType.valueOf(Integer.parseInt(keyinput));
+//        int shapeTypeTriangle = shapeType.getValue();
+//        int shapeTypeRectangle = ShapeType.RECTANGLE.getValue();
+//        int shapeTypeCircle = ShapeType.CIRCLE.getValue();
+
+        while (!"exit".equals(keyinput)) {
+            switch (shapeType) {
+                case TRIANGLE: // triangle
+                    createTriangle();
+                    keyinput = firstChose();
                     break;
-                case (2): //Rectangle
-                    Rectangle rectangle = getDataFomUserForRectangle();
-                    printArea(rectangle.getAreaUseLengthAndWidth());
-                    printPerimeter(rectangle.getPerimeter());
-                    printName(rectangle.getName());
-                    figure = firstChose();
+                case RECTANGLE: //Rectangl
+                    createRectangle();
+                    keyinput = firstChose();
 
                     break;
-                case (3): //Circle
-                    Circle circle = getDataFromUserForCircle();
-                    printArea(circle.getArea());
-                    printPerimeter(circle.getPerimeter());
-                    figure = firstChose();
+                case CIRCLE: //Circle
+                    createCircle();
+                    keyinput = firstChose();
                     break;
                 default:
                     System.out.println("pls write correct");
-                    figure = firstChose();
+                    keyinput = firstChose();
                     break;
             }//switch
         }
+    }
+
+    private void createCircle() {
+        Circle circle = getDataFromUserForCircle();
+        printArea(circle.getArea());
+        printPerimeter(circle.getPerimeter());
+    }
+
+    private void createRectangle() {
+        Rectangle rectangle = getDataFomUserForRectangle();
+        printArea(rectangle.getAreaUseLengthAndWidth());
+        printPerimeter(rectangle.getPerimeter());
+        printName(rectangle.getName());
+    }
+
+    private void createTriangle() {
+        Triangle triangle = getDataFromUserForTriangle();
+        printArea(triangle.getAreaUseAllSides());
+        printPerimeter(triangle.getPerimeterAllSides());
     }
 
     private String firstChose() {
         System.out.println("pls write what u want: Triangle(1) Rectangle(2) Circle(3)");
         System.out.println("or 'List' for show all create figure or 'Exit' for exit");
         Scanner src = new Scanner(System.in);
-        String figure = src.nextLine();
-        return figure;
+        String keyinput = src.nextLine();
+        return keyinput;
     }
 
     private Rectangle getDataFomUserForRectangle() {
