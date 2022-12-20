@@ -23,7 +23,6 @@ public class Rectangle {
     public String getName() {
         return name;
     }
-
     public double getAreaUseLengthAndWidth() {
 
         return getLength() * getWidth();

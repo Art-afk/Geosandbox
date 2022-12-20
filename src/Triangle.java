@@ -30,7 +30,6 @@ public class Triangle {
         double p = getPerimeterAllSides() / 2;
         return Math.sqrt(p * (p - getSideA()) * (p - getSideB()) * (p - getSideC()));
     }
-
     public double getPerimeterAllSides() {
 
         return getSideA() + getSideB() + getSideC();

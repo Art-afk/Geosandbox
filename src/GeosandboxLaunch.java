@@ -12,8 +12,6 @@ public class GeosandboxLaunch {
 
         GeosandboxLogic logic = new GeosandboxLogic();
         logic.request();
-
-
     }
 
 }

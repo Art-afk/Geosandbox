@@ -17,7 +17,6 @@ public class Circle {
     public double getArea() {
         return pi * square(getRadius());
     }
-
     public double getPerimeter() {
         return 2 * pi * getRadius();
     }

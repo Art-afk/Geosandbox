@@ -21,7 +21,6 @@ public class GeosandboxLogic {
                 case RECTANGLE: //Rectangl
                     createRectangle();
                     keyinput = firstChose();
-
                     break;
                 case CIRCLE: //Circle
                     createCircle();
@@ -34,7 +33,6 @@ public class GeosandboxLogic {
             }//switch
         }
     }
-
     private void createCircle() {
         Circle circle = getDataFromUserForCircle();
         printArea(circle.getArea());
