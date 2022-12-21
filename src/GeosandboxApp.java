@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class GeosandboxApp {
+    private ArrayList<Shape> shapeApp = new ArrayList<Shape>();
+
     GeosandboxApp() {
 
     }
@@ -12,16 +16,23 @@ public class GeosandboxApp {
             ShapeType shapeType = ShapeType.valueOf(Integer.parseInt(keyinput));
             switch (shapeType) {
                 case TRIANGLE: // triangle
-                    triangleSetup();
+                    Triangle triangle = triangleSetup();
+                    shapeApp.add(triangle);
                     break;
                 case RECTANGLE: //Rectangl
-                    rectangleSetup();
+                    Rectangle rectangle = rectangleSetup();
+                    shapeApp.add(rectangle);
                     break;
                 case CIRCLE: //Circle
-                    circleSetup();
+                    Circle circle = circleSetup();
+                    shapeApp.add(circle);
                     break;
                 case EXIT:
                     System.exit(0);
+                case LIST:
+                    pringAllShape();
+                    break;
+
                 default:
                     System.out.println("pls write correct");
 
@@ -30,69 +41,41 @@ public class GeosandboxApp {
         }
     }
 
-    private void circleSetup() {
+    public void pringAllShape() {
+        System.out.println(shapeApp.toString());
+    }
+
+    private Circle circleSetup() {
         CircleBuilder circleBuilder = new CircleBuilder();
         Circle circle = circleBuilder.bulidCircle();
-        printArea(circle.getArea());
-        printPerimeter(circle.getPerimeter());
+        return circle;
+//        printArea(circle.getArea());
+//        printPerimeter(circle.getPerimeter());
     }
 
-    private void rectangleSetup() {
+    private Rectangle rectangleSetup() {
         RectangleBuilder rectangleBuilder = new RectangleBuilder();
         Rectangle rectangle = rectangleBuilder.buildRectangle();
-        printArea(rectangle.getAreaUseLengthAndWidth());
-        printPerimeter(rectangle.getPerimeter());
-        printName(rectangle.getName());
+        return rectangle;
+//        printArea(rectangle.getAreaUseLengthAndWidth());
+//        printPerimeter(rectangle.getPerimeter());
+//        printName(rectangle.getName());
     }
 
-    private void triangleSetup() {
+    private Triangle triangleSetup() {
         TriangleBuilder triangleBuilder = new TriangleBuilder();
         Triangle triangle = triangleBuilder.buildTriangle();
-        printArea(triangle.getAreaUseAllSides());
-        printPerimeter(triangle.getPerimeterAllSides());
+        return triangle;
+//        printArea(triangle.getAreaUseAllSides());
+//        printPerimeter(triangle.getPerimeterAllSides());
     }
 
     private String firstChose() {
         System.out.println("pls write what u want: Triangle(1) Rectangle(2) Circle(3)");
-        System.out.println("or 'List' for show all create figure or 'Exit' for exit");
+        System.out.println("or List(4) for show all create figure or Exit(0) for exit");
         Scanner src = new Scanner(System.in);
         String keyinput = src.nextLine();
         return keyinput;
     }
 
-    private Rectangle getDataFomUserForRectangle() {
-        Scanner src = new Scanner(System.in);
-        double lenght = 0;
-        double width = 0;
-        String name = "";
-        System.out.println("pls write name of figure");
-        if (src.hasNextLine()) {
-            name = src.nextLine();
-        } else {
-            name = "rectangle";
-        }
-        System.out.println("pls write  lenght ");
-        if (src.hasNextInt()) lenght = src.nextInt();
-        else if (src.hasNextDouble()) lenght = src.nextDouble();
-        System.out.println("pls write  width ");
-        if (src.hasNextInt()) width = src.nextInt();
-        else if (src.hasNextDouble()) width = src.nextDouble();
-        return new Rectangle(name, lenght, width);
-    }
-
-
-
-
-    private void printArea(double area) {
-        System.out.println("Area : " + area);
-
-    }
-
-    private void printPerimeter(double perm) {
-        System.out.println("Perm: " + perm);
-    }
-
-    private void printName(String name) {
-        System.out.println("Name figure: " + name);
-    }
 }
