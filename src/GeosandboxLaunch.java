@@ -10,7 +10,7 @@
 public class GeosandboxLaunch {
     public static void main(String[] args) {
 
-        GeosandboxLogic logic = new GeosandboxLogic();
+        GeosandboxApp logic = new GeosandboxApp();
         logic.request();
     }
 
