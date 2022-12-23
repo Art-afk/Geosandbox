@@ -18,8 +18,6 @@ public class GeosandboxApp {
         while (repeat){
             int keyinput = printMainMenu();
             MainDialog mainDialog = MainDialog.valueOf(keyinput);
-            if(mainDialog == null)
-                mainDialog = MainDialog.UNKNOWN;
             switch (mainDialog){
                 case LIST:
                     printAllShape();
@@ -37,7 +35,7 @@ public class GeosandboxApp {
         }
     }
     private int printMainMenu(){
-        System.out.println("pls write what u want: List(1), Exit(0) or press any key to create figure");
+        System.out.println("pls write what u want: Create Shape(2), List(1), Exit(0) or press any key to create figure");
         Scanner src = new Scanner(System.in);
         String keyinput = src.nextLine();
         if(keyinput == "")
@@ -51,8 +49,6 @@ public class GeosandboxApp {
         while (repeat) {
             int keyinput = printShapeMenu();
             ShapeType shapeType = ShapeType.valueOf(keyinput);
-            if(shapeType == null)
-                shapeType = ShapeType.UNKNOWN;
             switch (shapeType) {
                 case TRIANGLE: // triangle
                     Triangle triangle = triangleSetup();

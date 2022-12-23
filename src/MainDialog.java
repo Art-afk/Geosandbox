@@ -19,7 +19,12 @@ public enum MainDialog {
     }
 
     public static MainDialog valueOf(int mainDialog ) {
-        return (MainDialog) map.get(mainDialog);
+
+        MainDialog key = (MainDialog) map.get(mainDialog);
+        if(key == null){
+            key = UNKNOWN;
+        }
+        return key;
     }
 
     public int getValue() {
