@@ -11,7 +11,7 @@ public class GeosandboxLaunch {
     public static void main(String[] args) {
 
         GeosandboxApp logic = new GeosandboxApp();
-        logic.request();
+        logic.requestMenu();
     }
 
 }
