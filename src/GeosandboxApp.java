@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class GeosandboxApp {
@@ -13,11 +12,11 @@ public class GeosandboxApp {
 
     }
 
-    public void requestMenu(){
+    public void displayMainMenu(){
         Boolean repeat = true;
 
         while (repeat){
-            int keyinput = choseFirstMenu();
+            int keyinput = printMainMenu();
             MainDialog mainDialog = MainDialog.valueOf(keyinput);
             if(mainDialog == null)
                 mainDialog = MainDialog.UNKNOWN;
@@ -28,14 +27,16 @@ public class GeosandboxApp {
                 case EXIT:
                     System.exit(0);
                     break;
+                case CREATESHAPE:
+                    displayShapeMenuSelection();
                 default:
-                    workWithShape();
+                    System.out.println("pls check what u chose");
                     break;
             }
 
         }
     }
-    private int choseFirstMenu(){
+    private int printMainMenu(){
         System.out.println("pls write what u want: List(1), Exit(0) or press any key to create figure");
         Scanner src = new Scanner(System.in);
         String keyinput = src.nextLine();
@@ -45,10 +46,10 @@ public class GeosandboxApp {
     }
 
 
-    private void workWithShape() {
+    private void displayShapeMenuSelection() {
         Boolean repeat = true;
         while (repeat) {
-            int keyinput = choseShape();
+            int keyinput = printShapeMenu();
             ShapeType shapeType = ShapeType.valueOf(keyinput);
             if(shapeType == null)
                 shapeType = ShapeType.UNKNOWN;
@@ -101,7 +102,7 @@ public class GeosandboxApp {
 
     }
 
-    private Integer choseShape() {
+    private Integer printShapeMenu() {
         System.out.println("pls write what u want: Triangle(1) Rectangle(2) Circle(3)");
         System.out.println("or Exit(0) for exit to Main menu");
         Scanner src = new Scanner(System.in);

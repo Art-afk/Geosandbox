@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum ShapeType {
-    TRIANGLE(1), RECTANGLE(2), CIRCLE(3), UNKNOWN(-0);
+    UNKNOWN(-0),TRIANGLE(1), RECTANGLE(2), CIRCLE(3);
     private final int value;
     private static Map map = new HashMap<>();
 

@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum MainDialog {
-    EXIT(0), LIST(1),UNKNOWN(-0);
+    UNKNOWN(-0),EXIT(0), LIST(1),CREATESHAPE(2);
 
     private final int value;
 
