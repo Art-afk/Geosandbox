@@ -19,7 +19,7 @@ public class Circle extends Shape {
 
     @Override
     public double getArea() {
-        return pi * square(getRadius());
+        return pi * pow(getRadius());
     }
 
     @Override
@@ -27,8 +27,18 @@ public class Circle extends Shape {
         return 2 * pi * getRadius();
     }
 
+    @Override
+    public String getParam() {
+        String param = "Radius: " + getRadius();
+        return param;
+    }
 
-    public double square(double a) {
+    @Override
+    public String getSettings() {
+        return "Radius: " + getRadius() + "\nDiameter: " + getRadius() * 2;
+    }
+
+    public double pow(double a) {
         return a * a;
     }
 
