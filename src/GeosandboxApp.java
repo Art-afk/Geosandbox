@@ -110,7 +110,8 @@ public class GeosandboxApp {
         else {
             for (Shape key : shapeApp) {
                 if (key.getName().toLowerCase().equals(name.toLowerCase())) {
-                    System.out.println(key.getName() + " Perimeter: " + key.getPerimeter() + " Area: " + key.getArea());
+                    String[] shape = key.toString().split("@");
+                    System.out.println("Type: " + shape[0] + " \nName: " + key.getName() + "\n" + key.getSettings());
                 }
             }
         }

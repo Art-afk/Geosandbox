@@ -6,5 +6,7 @@ public abstract class Shape {
 
     public abstract double getPerimeter();
 
+    public abstract String getSettings();
+
     public abstract double getArea();
 }

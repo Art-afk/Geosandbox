@@ -27,7 +27,7 @@ public class Rectangle extends Shape {
 
     @Override
     public String getParam() {
-        String param = "Lengh: " + getLength() + " Width: " + getWidth();
+        String param = "Length: " + getLength() + " Width: " + getWidth();
         return param;
     }
 
@@ -40,6 +40,26 @@ public class Rectangle extends Shape {
     @Override
     public double getPerimeter() {
         return 2 * (getLength() + getWidth());
+    }
+
+    @Override
+    public String getSettings() {
+        String param = "Length: " + getLength() + " Width: " + getWidth() +
+                "\nDiagonal: " + getDiagonalRectangle() +
+                "\nIs a rectangle a square: " + getRectangleOrSqr();
+        return param;
+    }
+
+    private double getDiagonalRectangle() {
+        return Math.sqrt(pow(getLength()) + pow(getWidth()));
+    }
+
+    private Double pow(Double a) {
+        return a * a;
+    }
+
+    private boolean getRectangleOrSqr() {
+        return getWidth() == getLength();
     }
 
 }
