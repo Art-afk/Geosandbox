@@ -1,8 +1,6 @@
 import java.util.Scanner;
 
 public class CircleBuilder {
-
-
     public Circle bulidCircle() {
         Scanner src = new Scanner(System.in);
         System.out.println("pls write with space name of figure, radius ");

@@ -25,7 +25,7 @@ public class GeosandboxApp {
                 case EXIT:
                     System.exit(0);
                     break;
-                case CREATESHAPE:
+                case CREATE_SHAPE:
                     displayShapeMenuSelection();
                 default:
                     System.out.println("pls check what u chose");
@@ -35,7 +35,7 @@ public class GeosandboxApp {
         }
     }
     private int printMainMenu(){
-        System.out.println("pls write what u want: Create Shape(2), List(1), Exit(0) or press any key to create figure");
+        System.out.println("pls write what u want:  Exit(0), List(1), Create Shape(2) or press any key to create figure");
         Scanner src = new Scanner(System.in);
         String keyinput = src.nextLine();
         if(keyinput == "")
