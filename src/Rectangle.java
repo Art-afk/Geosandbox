@@ -1,4 +1,4 @@
-public class Rectangle {
+public class Rectangle extends Shape {
 
     private final String name;
 
@@ -6,12 +6,13 @@ public class Rectangle {
     private final double width;
 
 
-   public Rectangle(String name, double length, double width) {
+    public Rectangle(String name, double length, double width) {
 
-       this.length = length;
-       this.width = width;
-       this.name = name;
+        this.length = length;
+        this.width = width;
+        this.name = name;
     }
+
     public double getLength() {
         return length;
     }
@@ -24,11 +25,13 @@ public class Rectangle {
         return name;
     }
 
-    public double getAreaUseLengthAndWidth() {
+    @Override
+    public double getArea() {
 
         return getLength() * getWidth();
     }
 
+    @Override
     public double getPerimeter() {
         return 2 * (getLength() + getWidth());
     }

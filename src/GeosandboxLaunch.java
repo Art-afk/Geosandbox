@@ -10,10 +10,8 @@
 public class GeosandboxLaunch {
     public static void main(String[] args) {
 
-        GeosandboxLogic logic = new GeosandboxLogic();
-        logic.request();
-
-
+        GeosandboxApp logic = new GeosandboxApp();
+        logic.displayMainMenu();
     }
 
 }
