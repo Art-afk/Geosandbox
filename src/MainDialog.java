@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum MainDialog {
-    UNKNOWN(-1),EXIT(0), LIST(1), CREATE_SHAPE(2);
+    UNKNOWN(-1), EXIT(0), SHAPE_MANAGER(1), CREATE_SHAPE(2);
 
     private final int value;
 
@@ -18,10 +18,10 @@ public enum MainDialog {
         }
     }
 
-    public static MainDialog valueOf(int mainDialog ) {
+    public static MainDialog valueOf(int mainDialog) {
 
         MainDialog key = (MainDialog) map.get(mainDialog);
-        if(key == null){
+        if (key == null) {
             key = UNKNOWN;
         }
         return key;

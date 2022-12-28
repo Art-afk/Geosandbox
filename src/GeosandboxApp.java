@@ -1,3 +1,4 @@
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,40 +13,40 @@ public class GeosandboxApp {
 
     }
 
-    public void displayMainMenu(){
+    public void displayMainMenu() {
         Boolean repeat = true;
 
-        while (repeat){
-            int keyinput = printMainMenu();
+        while (repeat) {
+            int keyinput = printMainMenuDialog();
             MainDialog mainDialog = MainDialog.valueOf(keyinput);
-            switch (mainDialog){
-                case LIST:
-                    printAllShape();
-                    break;
+            switch (mainDialog) {
                 case EXIT:
                     System.exit(0);
                     break;
+                case SHAPE_MANAGER:
+                    shapeManagerBuilderMenu();
+                    break;
                 case CREATE_SHAPE:
                     displayShapeMenuSelection();
+                    break;
                 default:
                     System.out.println("pls check what u chose");
                     break;
             }
+        }
+    }
+
+    private void displayShapeManagerMenuSelection() {
+
+        boolean repeat = true;
+        while (repeat) {
+
 
         }
     }
-    private int printMainMenu(){
-        System.out.println("pls write what u want:  Exit(0), List(1), Create Shape(2) or press any key to create figure");
-        Scanner src = new Scanner(System.in);
-        String keyinput = src.nextLine();
-        if(keyinput == "")
-            keyinput = "-0";
-        return Integer.parseInt(keyinput);
-    }
-
 
     private void displayShapeMenuSelection() {
-        Boolean repeat = true;
+        boolean repeat = true;
         while (repeat) {
             int keyinput = printShapeMenu();
             ShapeType shapeType = ShapeType.valueOf(keyinput);
@@ -63,18 +64,63 @@ public class GeosandboxApp {
                     shapeApp.add(circle);
                     break;
                 default:
-                    repeat=false;
+                    repeat = false;
                     break;
             }//switch
         }
     }
 
-    private void printAllShape() {
-        if(shapeApp.isEmpty())
-            System.out.println("please create shape");
+    private Integer printMainMenuDialog() {
+        System.out.println("pls write what u want:  Exit(0), Shape Manager(1), Create Shape(2) or press any key to create figure");
+        Scanner src = new Scanner(System.in);
+        Integer keyinput = src.nextInt();
+        if (keyinput == null) keyinput = -1;
+        return keyinput;
+    }
+
+    private void shapeManagerBuilderMenu() {
+        boolean repeat = true;
+        while (repeat) {
+            Scanner src = new Scanner(System.in);
+            System.out.println("pls write chose what u want: \"exit\" to previous menu, \"List\", \"Show <name>\"");
+            String line = src.nextLine();
+            String[] shapeArgs = line.split(" ");
+            switch (ShapeManagerDialog.valueOf(shapeArgs[0].toUpperCase())) {
+                case SHOW:
+                    if (shapeArgs.length != 2) {
+                        System.out.println("show args incorrect. pls write \"shape <name>\" ");
+                        break;
+                    } else printShape(shapeArgs[1]);
+                    break;
+                case LIST:
+                    printAllShape();
+                    break;
+                case EXIT:
+                    repeat = false;
+                    break;
+                default:
+                    System.out.println("pls check what u chose");
+                    break;
+            }
+        }
+    }
+
+    private void printShape(String name) {
+        if (shapeApp.isEmpty()) System.out.println("please create shape");
         else {
-            for(Shape key : shapeApp){
-                System.out.println(key.getName() + " Perimeter: " + key.getPerimeter() + " Area: " + key.getArea());
+            for (Shape key : shapeApp) {
+                if (key.getName().toLowerCase().equals(name.toLowerCase())) {
+                    System.out.println(key.getName() + " Perimeter: " + key.getPerimeter() + " Area: " + key.getArea());
+                }
+            }
+        }
+    }
+
+    private void printAllShape() {
+        if (shapeApp.isEmpty()) System.out.println("please create shape");
+        else {
+            for (Shape key : shapeApp) {
+                System.out.println(key.getName() + " Parameters: " + key.getParam());
                 System.out.println("-----------");
             }
         }
@@ -103,8 +149,7 @@ public class GeosandboxApp {
         System.out.println("or Exit(0) for exit to Main menu");
         Scanner src = new Scanner(System.in);
         String keyinput = src.nextLine();
-        if(keyinput == "")
-            keyinput = "-0";
+        if (keyinput == "") keyinput = "-1";
         return Integer.parseInt(keyinput);
     }
 
