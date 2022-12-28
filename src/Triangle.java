@@ -37,9 +37,12 @@ public class Triangle extends Shape {
 
     @Override
     public double getPerimeter() {
-
         return getSideA() + getSideB() + getSideC();
     }
 
-
+    @Override
+    public String getParam() {
+        String param = "SideA: " + getSideA() + " SideB: " + getSideB() + " SideC: " + getSideC();
+        return param;
+    }
 }

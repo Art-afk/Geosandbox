@@ -26,6 +26,12 @@ public class Rectangle extends Shape {
     }
 
     @Override
+    public String getParam() {
+        String param = "Lengh: " + getLength() + " Width: " + getWidth();
+        return param;
+    }
+
+    @Override
     public double getArea() {
 
         return getLength() * getWidth();
